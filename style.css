@@ -1,0 +1,115 @@
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+}
+
+#game-container, #shop-container {
+    margin: 20px;
+}
+
+#click-item {
+    cursor: pointer;
+    width: 200px; /* Adjust as needed */
+    height: auto;
+}
+
+#score {
+    margin-top: 20px;
+    font-size: 24px;
+}
+
+#shop-container {
+    border: 2px solid black;
+    padding: 20px;
+}
+
+.shop-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.buy-button {
+    margin-right: 10px;
+}
+
+.item-name, .item-price, .item-owned {
+    margin: 0 5px;
+}
+
+h2 {
+    border-bottom: 2px solid black;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+/* ... existing styles ... */
+
+.shop-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #000;
+}
+
+.item-info {
+    flex-grow: 1;
+}
+
+.item-name {
+    font-weight: bold;
+}
+
+.item-description {
+    font-size: small;
+    width: 150px; /* Fixed width for the description */
+    word-wrap: break-word; /* Ensures words wrap and do not exceed the container width */
+}
+
+.item-stats {
+    text-align: center;
+    margin: 0 20px;
+}
+
+.item-owned-count,
+.item-score-per-second {
+    margin: 5px 0;
+}
+
+.item-cost {
+    text-align: right;
+    margin-left: 20px;
+}
+
+.buy-button {
+    margin-left: 10px;
+}
+
+/* ... existing styles ... */
+
+@keyframes click-effect {
+    0% {
+      transform: scale(1); /* Original size */
+    }
+    50% {
+      transform: scale(0.8); /* Shrink to 80% of the original size */
+    }
+    100% {
+      transform: scale(1); /* Back to original size */
+    }
+  }
+  
+  .clicked {
+    animation: click-effect 0.2s ease; /* Adjust time as needed */
+  }
+  
+#total-score-per-second {
+    margin-top: 10px;
+    font-size: 16px;
+}
