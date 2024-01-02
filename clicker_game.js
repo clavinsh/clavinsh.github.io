@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
           clickItem.classList.remove('clicked');
         }, 200); // This should match the duration of the animation
 
-        score++;
+        score+=1n;
         updateScore();
     });
 
@@ -18,10 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (event.target.classList.contains('buy-button')) {
             let itemKey = event.target.getAttribute('data-item');
             let item = shopItems[itemKey];
-            if (score >= item.cost) {
-                score -= item.cost;
-                item.owned++;
-                item.cost = Math.floor(item.cost * 1.15); // Increase the cost for the next purchase
+            if (score >= BigInt(item.cost)) { // Ensure comparison with BigInt
+                score -= BigInt(item.cost);
+                item.owned += 1n; // Increment owned by 1 BigInt
+                item.cost = BigInt(Math.floor(Number(item.cost) * 1.15)); // Increase the cost for the next purchase
                 updateScore();
             }
         }
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
 });
 
-let score = 0;
+let score = BigInt(0); // Initialize score as BigInt
 let shopItems = {
     deposit: {
         name: "Depozīta čeks",
@@ -151,7 +151,7 @@ let shopItems = {
         description: "Viens un vienīgais",
         cost: 1_000_000_000_000_000n,
         owned: 0,
-        scorePerSecond: 999_000_000_000_000_000n,
+        scorePerSecond: _000_000_000_000_000n,
         increment: function() {
             score += this.owned * this.scorePerSecond;
             updateScore();
