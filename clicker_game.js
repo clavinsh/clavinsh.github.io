@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 item.cost = BigInt(Math.floor(BigInt(item.cost) * 1.15)); // Increase the cost for the next purchase
                 updateScore();
             }
+
+            checkForEndgame();
         }
     });
     
@@ -212,11 +214,11 @@ function updateShop() {
 }
 
 function updateTotalScorePerSecond() {
-    let totalScorePerSecond = 0;
+    let totalScorePerSecond = BigInt(0);
     for (let key in shopItems) {
         totalScorePerSecond += shopItems[key].owned * shopItems[key].scorePerSecond;
     }
-    document.getElementById('total-score-per-second').innerText = `Pasīvie ienākumi: +${formatNumber( totalScorePerSecond)}/s`;
+    document.getElementById('total-score-per-second').innerText = `Pasīvie ienākumi: +${formatNumber(totalScorePerSecond)}/s`;
 }
 
 function formatNumber(num) {
@@ -235,3 +237,19 @@ function formatNumber(num) {
 
     return number.toString() + suffixes[suffixIndex];
 }
+
+function checkForEndgame() {
+    // Example: check if the player owns a specific endgame item
+    if (shopItems['Edgars'].owned > 0) {
+        triggerEndgameEvent();
+    }
+}
+
+
+function triggerEndgameEvent() {
+    document.getElementById('endgame-event').style.display = 'block';
+    document.getElementById('endgame-gif').style.display = 'block';
+    let audio = document.getElementById('endgame-audio');
+    audio.play();
+}
+
