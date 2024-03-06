@@ -61,6 +61,26 @@ class Polygon {
         ctx.fill();
     }
 
+    // adjust the vertex array and sorts them, if needed,
+    // so that both polygons are drawn clock-wise 
+    static NormalizePolygon(polygon) {
+
+        if (calculateSignedArea(polygon) > 0) {
+            polygon.points.slice().reverse(); // Reverse if counter-clockwise
+        }
+
+        // Simple function to calculate signed area of a polygon (for orientation)
+        // Shoelace formula
+        function calculateSignedArea(polygon) {
+            let area = 0;
+            for (let i = 0; i < polygon.points.length; i++) {
+                let j = (i + 1) % polygon.points.length;
+                area += polygon.points[i].x * polygon.points[j].y - polygon.points[j].x * polygon.points[i].y;
+            }
+            return area / 2;
+        }
+    }
+
     // divides one of the given polygons into more vertices,
     // so that the vertex count matches between the polygons
     static EqualizePolygons(polygon1, polygon2) {
@@ -101,6 +121,8 @@ class Polygon {
         let points2 = polygon2.points;
 
         console.log(polygon1, polygon2);
+        Polygon.NormalizePolygon(polygon1);
+        Polygon.NormalizePolygon(polygon2);
         Polygon.EqualizePolygons(polygon1, polygon2);
         console.log(polygon1, polygon2);
 
