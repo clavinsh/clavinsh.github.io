@@ -59,42 +59,75 @@ class Polygon {
 
         ctx.closePath();
         ctx.fill();
+
+        Polygon.DrawVertices(ctx, polygon);
     }
 
-    // to be completed!!!
-    static EqualizePolygons(polygon1, polygon2) {
-        let points1 = polygon1.points;
-        let points2 = polygon2.points;
+    static DrawVertices(ctx, polygon) {
+        let points = polygon.points;
 
-        if(points1.length > points2.length) {
-            let pointDiff = points1.length - points2.length;
-
-            let firstEdgeSplitPoint = 0;
-            let secondEdgeSplitPoint = 1;
-            
-            for(let i = 0; i < pointDiff; i++) {
-                let xMidPoint = Math.round((polygon2.points[secondEdgeSplitPoint].x + polygon2.points[firstEdgeSplitPoint].x)/2);
-                let yMidPoint = Math.round((polygon2.points[secondEdgeSplitPoint].y + polygon2.points[firstEdgeSplitPoint].y)/2);
-
-                polygon2.points.splice(firstEdgeSplitPoint, 0,  new Point(xMidPoint, yMidPoint));
-
-                firstEdgeSplitPoint = (firstEdgeSplitPoint + 2) % (polygon2.points.length);
-                secondEdgeSplitPoint = (firstEdgeSplitPoint + 1) % (polygon2.points.length);
-            }
+        if(points.length === 0) {
+            return;
         }
-        else if (points1.length < points2.length) {
-            let pointDiff = points2.length - points1.length;
 
+        ctx.fillStyle = "red";
+
+        for(let i = 0; i < points.length; i++) {
+            ctx.fillRect(points[i].x,points[i].y,5,5);
+        }
+
+        ctx.fillStyle = "black";
+    }
+
+    // adjust the vertex array and sorts them, if needed,
+    // so that both polygons are drawn clock-wise 
+    static NormalizePolygon(polygon) {
+
+        if (calculateSignedArea(polygon) > 0) {
+            polygon.points.slice().reverse(); // Reverse if counter-clockwise
+        }
+
+        // Simple function to calculate signed area of a polygon (for orientation)
+        // Shoelace formula
+        function calculateSignedArea(polygon) {
+            let area = 0;
+            for (let i = 0; i < polygon.points.length; i++) {
+                let j = (i + 1) % polygon.points.length;
+                area += polygon.points[i].x * polygon.points[j].y - polygon.points[j].x * polygon.points[i].y;
+            }
+            return area / 2;
+        }
+    }
+
+    // divides one of the given polygons into more vertices,
+    // so that the vertex count matches between the polygons
+    static EqualizePolygons(polygon1, polygon2) {
+        let pointDiff = polygon1.points.length - polygon2.points.length;
+
+        // check which polygon needs to be divided
+        if(pointDiff > 0) {
+            DividePolygon(polygon2, Math.abs(pointDiff));
+        }
+        else if (pointDiff < 0) {
+            DividePolygon(polygon1, Math.abs(pointDiff));
+        }
+
+        // divides the given polygon 'diff' number of times by going round-n-round the vertices
+        function DividePolygon(polygon, diff) {
             let firstEdgeSplitPoint = 0;
-            let secondEdgeSplitPoint = 1;
             
-            for(let i = 0; i < pointDiff; i++) {
-                let xMidPoint = Math.round((points1[secondEdgeSplitPoint].x + points1[firstEdgeSplitPoint].x)/2);
-                let yMidPoint = Math.round((points1[secondEdgeSplitPoint].y + points1[firstEdgeSplitPoint].y)/2);
+            for(let i = 0; i < diff; i++) {
+                let secondEdgeSplitPoint = (firstEdgeSplitPoint + 1) % (polygon.points.length);
 
-                polygon1.points.splice(firstEdgeSplitPoint, 0,  new Point(xMidPoint, yMidPoint));
-                firstEdgeSplitPoint = (firstEdgeSplitPoint + 2) % (polygon1.points.length + 1);
-                secondEdgeSplitPoint = firstEdgeSplitPoint + 1 % (polygon1.points.length + 1);
+                console.log(firstEdgeSplitPoint, secondEdgeSplitPoint);
+
+                let xMidPoint = Math.round((polygon.points[secondEdgeSplitPoint].x + polygon.points[firstEdgeSplitPoint].x)/2);
+                let yMidPoint = Math.round((polygon.points[secondEdgeSplitPoint].y + polygon.points[firstEdgeSplitPoint].y)/2);
+
+                // inserts the new vertex right after the first vertex
+                polygon.points.splice(firstEdgeSplitPoint + 1, 0,  new Point(xMidPoint, yMidPoint));
+
+                firstEdgeSplitPoint = (secondEdgeSplitPoint + 1) % (polygon.points.length);
             }
         }
     }
@@ -102,15 +135,15 @@ class Polygon {
     static MorphPolygons(ctx, polygon1, polygon2, duration = 10000) {
         
         const frameRate = 60;
-        const totalFrames = (duration / 1000) * frameRate;
+        const totalFrames = Math.round(frameRate *  duration / 1000);
         let frame = 0;
 
         let points1 = polygon1.points;
         let points2 = polygon2.points;
 
-        console.log(polygon1, polygon2);
+        Polygon.NormalizePolygon(polygon1);
+        Polygon.NormalizePolygon(polygon2);
         Polygon.EqualizePolygons(polygon1, polygon2);
-        console.log(polygon1, polygon2);
 
         const diffs = points1.map((point, i) => ({
             dx: (points2[i].x - point.x) / totalFrames,
@@ -121,6 +154,8 @@ class Polygon {
             if(frame < totalFrames) {
                 ctx.clearRect(0,0,canvas.width, canvas.height);
 
+                // linear interpolation to calculate the intermediate vertices
+                // between the two polygons
                 const intermediatePoints = points1.map((point, i) => new Point(
                     Math.round(point.x + diffs[i].dx * frame),
                     Math.round(point.y + diffs[i].dy * frame),
@@ -134,7 +169,6 @@ class Polygon {
                 //the final-final frame is the second polygon
                 Polygon.DrawPolygon(ctx, polygon2);
             }
-
         }
 
         animate();
