@@ -2,16 +2,41 @@
 
 // this js code uses the Math.js library (https://mathjs.org) for complex number operations
 
-const canvas = document.querySelector("#myCanvas");
+const canvas = document.querySelector("#inputCanvas");
 const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height;
+
+const form = document.querySelector("#inputForm");
+
+form.addEventListener("submit", function (event) {
+    const dftCode = "dft";
+    const idftCode = "idft";
+    event.preventDefault();
+
+    let formData = new FormData(event.target);
+
+    let op = formData.get("operation");
+    let imgInput = formData.get("imgInput");
+
+    console.log(imgInput);
+
+    // input validation
+    if (imgInput.size === 0) {
+        return;
+    }
+
+    if (op === dftCode) {
+    } else if (op === idftCode) {
+    } else {
+        return;
+    }
+});
 
 const input = document.querySelector("#imgInput");
 
-input.addEventListener("change", processInputImage);
+//input.addEventListener("change", processInputImage);
 
 function processInputImage(event) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     const file = event.target.files[0];
     const image = new Image();
     const url = URL.createObjectURL(file);
@@ -19,14 +44,12 @@ function processInputImage(event) {
     image.onload = function () {
         URL.revokeObjectURL(url);
 
-        let scaleWidth = canvas.width / 2 / image.width;
-        let scaleHeight = window.innerHeight / image.height;
-        let scale = Math.min(scaleWidth, scaleHeight);
+        ctx.drawImage(image, 0, 0, image.width, image.height);
 
-        canvas.height = Math.min(image.height * scale, window.innerHeight);
+        let imageData = ctx.getImageData(0, 0, image.width, image.height);
 
-        let imageData = drawImageScaled(image, ctx, true);
         let grayscaled = convertToGrayscale(imageData);
+
         ctx.putImageData(grayscaled, 0, 0);
 
         let processedImageData = GetImageDataFrom2dIntensityRepresenation(
@@ -92,6 +115,7 @@ function convertToGrayscale(image) {
         pixels[i] = intensity;
         pixels[i + 1] = intensity;
         pixels[i + 2] = intensity;
+        pixels[i + 3] = 255;
     }
 
     return image;

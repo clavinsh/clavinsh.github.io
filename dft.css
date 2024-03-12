@@ -4,11 +4,41 @@ html {
     padding: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#canvasContainer {
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: space-around;
+    align-items: center;
 }
 
 canvas {
-    display: block;
-    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid black;
+    padding: 10px;
+    width: calc(50% - 24px);
     height: auto;
+    background-color: #f0f0f0;
+}
+
+/* Additional styling to ensure the form doesn't stretch too wide */
+#inputForm {
+    width: 90%;
+    max-width: 600px; /* Adjust as needed */
+    margin: 20px auto; /* Center the form with margin */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#inputForm input,
+#inputForm select,
+#inputForm button {
+    margin: 10px 0; /* Space out form elements */
 }

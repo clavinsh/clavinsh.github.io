@@ -9,19 +9,30 @@
         </title>
     </head>
     <body>
-        <input type="file" id="imgInput" accept="image/*" />
-        <canvas id="myCanvas">
-            <p>
-                If you are seeing this, you won't be able to interact with the
-                demo :(
-            </p>
-        </canvas>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/12.4.0/math.min.js"
-            integrity="sha512-9esFEzaUZesByXMf48nwheEbXl3UkfrtAJ1Zl+QBEZrByAqBKtmxGSlaOFbgfNh4QYxwGhBJ53kElqBNbrfbdw=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
-        ></script>
+        <form id="inputForm">
+            <input type="file" id="imgInput" name="imgInput" accept="image/*" />
+            <select id="operation" name="operation">
+                <option value="dft">Discrete Fourier transform (DFT)</option>
+                <option value="idft">Inverse DFT</option>
+            </select>
+            <button type="submit">Process</button>
+        </form>
+
+        <div id="canvasContainer">
+            <canvas id="inputCanvas">
+                <p>
+                    If you are seeing this, you won't be able to interact with
+                    the demo :(
+                </p>
+            </canvas>
+            <canvas id="outputCanvas">
+                <p>
+                    If you are seeing this, you won't be able to interact with
+                    the demo :(
+                </p>
+            </canvas>
+        </div>
+
         <script src="./dft.js"></script>
     </body>
 </html>
