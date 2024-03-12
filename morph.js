@@ -30,6 +30,9 @@ class Polygon {
         this.vertices = vertices;
     }
 
+    // uzzīmē daudzstūri canvas kontekstā 'ctx'
+    // velk figūru starp visām daudzstūra virsotnēm un tad aizpilda to
+    // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/beginPath
     DrawPolygon(ctx) {
         if (this.vertices === 0) {
             return;
@@ -67,15 +70,15 @@ class Polygon {
         }
     }
 
-    // adjust the vertex array and sorts them, if needed,
-    // so that both polygons are drawn clock-wise
+    // sakārto daudzstūra virsotņu masīvu, tā lai tas tiek zīmēts pulksteņarād. virzienā
     NormalizePolygon() {
         if (CalculateSignedArea(this.vertices) > 0) {
-            this.vertices = this.vertices.slice().reverse(); // Reverse if counter-clockwise
+            this.vertices = this.vertices.slice().reverse(); // masīvs tiek invertēts, jo daudzstūris ir pret. plkst.rād. virzienam
         }
 
-        // Simple function to calculate signed area of a polygon (for orientation)
-        // Shoelace formula
+        // Funkcija, kas izrēķina daudzstūra laukumu
+        // Laukums būs negatīvs, ja daudzstūra masīvs kārtots pret. plkst.rād. virzienam
+        // https://en.wikipedia.org/wiki/Shoelace_formula
         function CalculateSignedArea(vertices) {
             let area = 0;
             for (let i = 0; i < vertices.length; i++) {
@@ -88,6 +91,9 @@ class Polygon {
         }
     }
 
+    // ievieto daudzstūri vēl papildus 'diff' skaita virsotnes
+    // pamatā iet round-n-round un starp divām virsotnēm ievieto pa vidu jaunu,
+    // jeb daudzstūra malu sadala uz pusēm
     DividePolygon(diff) {
         let edgeFirstVertex = 0;
 
@@ -112,6 +118,8 @@ class Polygon {
         }
     }
 
+    // novienādo doto daudzstūru virsotņu skaitu, tā lai tās sakrīt
+    // atvieglo morfēšanu, jo katrai virsotnei no polygon1 var piekārtot otru virsotni no polygon2
     static EqualizePolygons(polygon1, polygon2) {
         let vertexCountDiff =
             polygon1.vertices.length - polygon2.vertices.length;
@@ -124,6 +132,10 @@ class Polygon {
         }
     }
 
+    // veic doto daudzstūru normalizēšanu, virsotņu skaita vienādošanu
+    // veic linēaro interpolāciju, lai iegūtu starp-posmu daudzstūri
+    // animēšana veikta ar Canvas API iespējām
+    // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Basic_animations
     static MorphPolygons(ctx, polygon1, polygon2, duration = 10000) {
         const frameRate = 60;
         const totalFrames = Math.round((frameRate * duration) / 1000);
