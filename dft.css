@@ -27,11 +27,10 @@ canvas {
     background-color: #f0f0f0;
 }
 
-/* Additional styling to ensure the form doesn't stretch too wide */
 #inputForm {
     width: 90%;
-    max-width: 600px; /* Adjust as needed */
-    margin: 20px auto; /* Center the form with margin */
+    max-width: 600px;
+    margin: 20px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,5 +39,5 @@ canvas {
 #inputForm input,
 #inputForm select,
 #inputForm button {
-    margin: 10px 0; /* Space out form elements */
+    margin: 10px 0;
 }

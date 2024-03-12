@@ -2,8 +2,16 @@
 
 // this js code uses the Math.js library (https://mathjs.org) for complex number operations
 
-const canvas = document.querySelector("#inputCanvas");
-const ctx = canvas.getContext("2d");
+const inputCanvas = document.querySelector("#inputCanvas");
+const inputCtx = inputCanvas.getContext("2d");
+
+const outputCanvas = document.querySelector("#outputCanvas");
+const outputCtx = outputCanvas.getContext("2d");
+
+function clearCanvas(canvas) {
+    let ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
 
 const form = document.querySelector("#inputForm");
 
@@ -25,7 +33,9 @@ form.addEventListener("submit", function (event) {
     }
 
     if (op === dftCode) {
+        processImage(imgInput, true);
     } else if (op === idftCode) {
+        processImage(imgInput, false);
     } else {
         return;
     }
@@ -33,69 +43,101 @@ form.addEventListener("submit", function (event) {
 
 const input = document.querySelector("#imgInput");
 
-//input.addEventListener("change", processInputImage);
+function processImage(imageFile, operation) {
+    clearCanvas(inputCanvas);
+    clearCanvas(outputCanvas);
 
-function processInputImage(event) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const file = event.target.files[0];
     const image = new Image();
-    const url = URL.createObjectURL(file);
+    const url = URL.createObjectURL(imageFile);
 
     image.onload = function () {
         URL.revokeObjectURL(url);
 
-        ctx.drawImage(image, 0, 0, image.width, image.height);
-
-        let imageData = ctx.getImageData(0, 0, image.width, image.height);
+        let imageData = drawImageScaled(inputCtx, image);
 
         let grayscaled = convertToGrayscale(imageData);
 
-        ctx.putImageData(grayscaled, 0, 0);
-
-        let processedImageData = GetImageDataFrom2dIntensityRepresenation(
-            normalizeMagnitude(
-                computeMagnitudeLog(
-                    DFT2D(Get2dIntensityRepresenationFromImageData(grayscaled))
-                )
-            )
-        );
+        imageDataToImage(inputCtx, grayscaled);
 
         let processedImage = new ImageData(image.width, image.height);
 
-        for (let i = 0; i < processedImage.data.length; i += 4) {
-            processedImage.data[i + 0] = processedImageData[i + 0];
-            processedImage.data[i + 1] = processedImageData[i + 1];
-            processedImage.data[i + 2] = processedImageData[i + 2];
-            processedImage.data[i + 3] = processedImageData[i + 3];
+        if (operation) {
+            let processedImageData = GetImageDataFrom2dIntensityRepresenation(
+                normalizeMagnitude(
+                    computeMagnitudeLog(
+                        DFT2D(
+                            Get2dIntensityRepresenationFromImageData(grayscaled)
+                        )
+                    )
+                )
+            );
+
+            for (let i = 0; i < processedImage.data.length; i += 4) {
+                processedImage.data[i + 0] = processedImageData[i + 0];
+                processedImage.data[i + 1] = processedImageData[i + 1];
+                processedImage.data[i + 2] = processedImageData[i + 2];
+                processedImage.data[i + 3] = processedImageData[i + 3];
+            }
+        } else {
+            let processedImageData = GetImageDataFrom2dIntensityRepresenation(
+                normalizeMagnitude(
+                    computeMagnitudeLog(
+                        IDFT2D(
+                            Get2dIntensityRepresenationFromImageData(grayscaled)
+                        )
+                    )
+                )
+            );
+
+            for (let i = 0; i < processedImage.data.length; i += 4) {
+                processedImage.data[i + 0] = processedImageData[i + 0];
+                processedImage.data[i + 1] = processedImageData[i + 1];
+                processedImage.data[i + 2] = processedImageData[i + 2];
+                processedImage.data[i + 3] = processedImageData[i + 3];
+            }
         }
 
-        ctx.putImageData(processedImage, canvas.width / 2, 0);
+        imageDataToImage(outputCtx, processedImage);
     };
 
     image.src = url;
 }
 
-function drawImageScaled(img, ctx, isOriginal) {
-    const canvasHalfWidth = canvas.width / 2;
-    let scale = canvasHalfWidth / img.width;
-    const maxHeight = window.innerHeight;
-    if (img.height * scale > maxHeight) {
-        scale = maxHeight / img.height;
-        canvas.width = img.width * scale * 2;
-    }
+function drawImageScaled(ctx, img) {
+    let canvas = ctx.canvas;
+    let hRatio = canvas.width / img.width;
+    let vRatio = canvas.height / img.height;
+    let ratio = Math.min(hRatio, vRatio);
 
-    const x = isOriginal ? 0 : canvasHalfWidth;
-    const y = (maxHeight - img.height * scale) / 2;
+    ctx.drawImage(
+        img,
+        0,
+        0,
+        img.width,
+        img.height,
+        0,
+        0,
+        img.width * ratio,
+        img.height * ratio
+    );
 
-    ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+    return ctx.getImageData(0, 0, img.width, img.height);
+}
 
-    if (isOriginal) {
-        // Apply grayscale conversion here
-    } else {
-        // Apply transformation here
-    }
+// https://stackoverflow.com/questions/13416800/how-to-generate-an-image-from-imagedata-in-javascript
+function imageDataToImage(drawCtx, imagedata) {
+    var canvas = document.createElement("canvas");
+    var ctx = canvas.getContext("2d");
+    canvas.width = imagedata.width;
+    canvas.height = imagedata.height;
+    ctx.putImageData(imagedata, 0, 0);
+    var image = new Image();
 
-    return ctx.getImageData(x, y, img.width * scale, img.height * scale);
+    image.onload = function () {
+        drawImageScaled(drawCtx, image);
+    };
+
+    image.src = canvas.toDataURL();
 }
 
 // since DFT works only with intensity and color cannot be represented with a single number,
@@ -119,6 +161,26 @@ function convertToGrayscale(image) {
     }
 
     return image;
+}
+
+function DFT1D(signal, twiddleFactors) {
+    const N = signal.length;
+    let outputSignal = new Array(N);
+
+    for (let k = 0; k < N; k++) {
+        let sum = [0, 0]; // Representing a complex number as [real, imaginary]
+        for (let n = 0; n < N; n++) {
+            let angleIndex = (k * n) % N; // This works because of periodicity
+            let trigPart = twiddleFactors[angleIndex];
+            let signalPart = Array.isArray(signal[n])
+                ? signal[n]
+                : [signal[n], 0];
+            sum = complexAdd(sum, complexMultiply(signalPart, trigPart));
+        }
+        outputSignal[k] = sum;
+    }
+
+    return outputSignal;
 }
 
 function DFT2D(signal) {
@@ -147,24 +209,69 @@ function DFT2D(signal) {
     return output;
 }
 
-function DFT1D(signal, twiddleFactors) {
+function IDFT1D(signal, twiddleFactors) {
     const N = signal.length;
     let outputSignal = new Array(N);
 
-    for (let k = 0; k < N; k++) {
+    for (let n = 0; n < N; n++) {
         let sum = [0, 0]; // Representing a complex number as [real, imaginary]
-        for (let n = 0; n < N; n++) {
-            let angleIndex = (k * n) % N; // This works because of periodicity
+        for (let k = 0; k < N; k++) {
+            let angleIndex = (n * k) % N; // This works because of periodicity
             let trigPart = twiddleFactors[angleIndex];
-            let signalPart = Array.isArray(signal[n])
+            let signalPart = Array.isArray(signal[k])
                 ? signal[n]
                 : [signal[n], 0];
             sum = complexAdd(sum, complexMultiply(signalPart, trigPart));
         }
-        outputSignal[k] = sum;
+        // Apply normalization factor
+        outputSignal[n] = [sum[0] / N, sum[1] / N];
     }
 
     return outputSignal;
+}
+
+function IDFT2D(signal) {
+    let height = signal.length;
+    let width = signal[0].length;
+    // Compute twiddle factors for IDFT
+    let rowTwiddleFactors = computeTwiddleFactors(width, true);
+    let colTwiddleFactors = computeTwiddleFactors(height, true);
+
+    let rowOutput = new Array(height);
+    for (let i = 0; i < height; i++) {
+        rowOutput[i] = IDFT1D(signal[i], rowTwiddleFactors);
+    }
+
+    let output = new Array(height).fill(0).map(() => new Array(width));
+    for (let i = 0; i < width; i++) {
+        let column = [];
+        for (let j = 0; j < height; j++) {
+            column[j] = rowOutput[j][i];
+        }
+        let transformedColumn = IDFT1D(column, colTwiddleFactors);
+        for (let j = 0; j < height; j++) {
+            output[j][i] = transformedColumn[j];
+        }
+    }
+
+    return output;
+}
+
+// Takes the real part of the IDFT because the original input was real (an image)
+function convertIDFTOutputToReal(idftOutput) {
+    const height = idftOutput.length;
+    const width = idftOutput[0].length;
+    let realOutput = new Array(height)
+        .fill(0)
+        .map(() => new Array(width).fill(0));
+
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            realOutput[y][x] = idftOutput[y][x][0];
+        }
+    }
+
+    return realOutput;
 }
 
 function computeMagnitudeLog(dftOutput) {
@@ -274,10 +381,15 @@ function complexExp(theta) {
 }
 
 // https://en.wikipedia.org/wiki/Twiddle_factor
-function computeTwiddleFactors(N) {
+function computeTwiddleFactors(N, inverse = false) {
     let twiddleFactors = new Array(N);
     for (let n = 0; n < N; n++) {
-        twiddleFactors[n] = complexExp((-2 * Math.PI * n) / N);
+        const angle = (2 * Math.PI * n) / N;
+        if (inverse) {
+            twiddleFactors[n] = [Math.cos(angle), Math.sin(angle)]; // IDFT sign
+        } else {
+            twiddleFactors[n] = [Math.cos(-angle), Math.sin(-angle)]; // DFT sign
+        }
     }
     return twiddleFactors;
 }
