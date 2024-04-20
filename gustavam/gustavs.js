@@ -17,6 +17,14 @@ document.addEventListener("DOMContentLoaded", function () {
     let gameRunning = true;
     let gameTimer = 0;
 
+    const enemyImage = new Image();
+    const gustavsImage = new Image();
+
+    enemyImage.addEventListener("load", () => {});
+
+    enemyImage.src = "";
+    gustavsImage.src = "";
+
     document.addEventListener("keydown", function (e) {
         if (e.key === "ArrowLeft") moveLeft = true;
         if (e.key === "ArrowRight") moveRight = true;
@@ -26,6 +34,21 @@ document.addEventListener("DOMContentLoaded", function () {
         if (e.key === "ArrowLeft") moveLeft = false;
         if (e.key === "ArrowRight") moveRight = false;
     });
+
+    function handleTouchStart(e) {
+        const touchX = e.touches[0].clientX;
+        const middleX = canvas.width / 2;
+        moveLeft = touchX < middleX;
+        moveRight = touchX >= middleX;
+    }
+
+    function handleTouchEnd(e) {
+        moveLeft = false;
+        moveRight = false;
+    }
+
+    canvas.addEventListener("touchstart", handleTouchStart, false);
+    canvas.addEventListener("touchend", handleTouchEnd, false);
 
     function drawCar() {
         ctx.fillStyle = "red";
@@ -41,20 +64,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 obstacle.width,
                 obstacle.height
             );
-            obstacle.y += gameSpeed;
+            obstacle.y += obstacle.speed;
         });
 
-        // remove obstacles that move out of the canvas
+        // Remove obstacles that have moved out of view
         obstacles = obstacles.filter((obstacle) => obstacle.y <= canvas.height);
     }
 
     function generateObstacles() {
-        let initialRate = 0.02;
-        let increaseCoefficient = 0.01;
-
-        let obstacleGenerationThreshold = capThreshold(
-            initialRate + increaseCoefficient * Math.floor(gameTimer / 1000)
-        );
+        let obstacleGenerationThreshold =
+            0.05 + 0.02 * Math.floor(gameTimer / 500); // More rapid increase
+        obstacleGenerationThreshold = Math.min(
+            obstacleGenerationThreshold,
+            0.4
+        ); // Higher cap for maximum difficulty
 
         if (Math.random() < obstacleGenerationThreshold) {
             let obstacleX = Math.random() * (canvas.width - 30);
@@ -66,13 +89,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 y: obstacleY,
                 width: obstacleWidth,
                 height: obstacleHeight,
+                speed: 2 + 0.5 * Math.floor(gameTimer / 1000),
             });
-        }
-
-        function capThreshold(threshold) {
-            let minimumThresholdRate = 0.01;
-
-            return Math.min(threshold, minimumThresholdRate);
         }
     }
 
