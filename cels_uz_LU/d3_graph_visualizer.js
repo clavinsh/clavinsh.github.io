@@ -1,5 +1,5 @@
 // Load the CSV file
-d3.csv("suits.csv").then(function (suits) {
+d3.csv("./suits.csv").then(function (suits) {
     console.log("csv loaded", suits);
     const width = 928;
     const height = 680;
@@ -24,7 +24,7 @@ d3.csv("suits.csv").then(function (suits) {
         .force("y", d3.forceY());
 
     const svg = d3
-        .select("svg")
+        .select("#graph")
         .attr("viewBox", [-width / 2, -height / 2, width, height])
         .attr("width", width)
         .attr("height", height)
