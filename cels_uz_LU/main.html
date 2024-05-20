@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="lv">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Mans Ceļš uz LU</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <div class="logo">ARTŪRS KLAVIŅŠ</div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Link 1</a></li>
+                        <li><a href="#">Link 2</a></li>
+                        <li><a href="#">Link 3</a></li>
+                        <li><a href="#">Link 4</a></li>
+                    </ul>
+                </nav>
+                <button id="mode-toggle">Toggle Dark Mode</button>
+            </div>
+        </header>
+        <main>
+            <div class="container">
+                <h1>Mans ceļš uz LU</h1>
+                <button class="day-button">Pirmdiena</button>
+                <div id="graph-container">
+                    <svg id="graph"></svg>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div class="container">
+                <p>&copy; 2024 Artūrs Klaviņš</p>
+            </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+        <script src="d3_graph_visualizer.js"></script>
+        <script src="theme_toggle.js"></script>
+    </body>
+</html>
