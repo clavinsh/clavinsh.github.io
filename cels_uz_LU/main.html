@@ -104,11 +104,23 @@
         <main class="py-12">
             <div class="container mx-auto text-center">
                 <h1 class="text-4xl font-bold mb-6">Mans ceļš uz LU</h1>
-                <button
-                    class="day-button bg-gray-800 text-gray-200 dark:bg-gray-200 dark:text-gray-800 px-4 py-2 mb-12"
-                >
-                    Pirmdiena
-                </button>
+                <div class="p-4">
+                    <label
+                        for="day-select"
+                        class="block text-gray-700 dark:text-gray-300"
+                        >Select a Day:</label
+                    >
+                    <select
+                        id="day-select"
+                        class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                    >
+                        <option value="day1">Pirmdiena</option>
+                        <option value="day2">Otrdiena</option>
+                        <option value="day3">Trešdiena</option>
+                        <option value="day4">Ceturtdiena</option>
+                        <option value="day5">Piektdiena</option>
+                    </select>
+                </div>
                 <div
                     id="graph-container"
                     class="border border-gray-800 dark:border-gray-200 mx-auto w-full max-w-4xl h-128"
