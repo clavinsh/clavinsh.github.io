@@ -4,6 +4,7 @@ window.addEventListener("load", function () {
             nodes: [
                 { id: "home", icon: "icons/home.svg" },
                 { id: "school", icon: "icons/school.svg" },
+                { id: "work", icon: "icons/office.svg" },
                 { id: "home_return", icon: "icons/home.svg" },
             ],
             links: [
@@ -14,6 +15,11 @@ window.addEventListener("load", function () {
                 },
                 {
                     source: "school",
+                    target: "work",
+                    icon: "icons/walk.svg",
+                },
+                {
+                    source: "work",
                     target: "home_return",
                     icon: "icons/transport.svg",
                 },
@@ -46,6 +52,76 @@ window.addEventListener("load", function () {
                     source: "work",
                     target: "home_return",
                     icon: "icons/transport.svg",
+                },
+            ],
+        },
+        day3: {
+            nodes: [
+                { id: "home", icon: "icons/home.svg" },
+                { id: "school", icon: "icons/school.svg" },
+                { id: "work", icon: "icons/office.svg" },
+                { id: "home_return", icon: "icons/home.svg" },
+            ],
+            links: [
+                {
+                    source: "home",
+                    target: "school",
+                    icon: "icons/transport.svg",
+                },
+                {
+                    source: "home",
+                    target: "work",
+                    icon: "icons/transport.svg",
+                },
+                {
+                    source: "school",
+                    target: "home_return",
+                    icon: "icons/walk.svg",
+                },
+                {
+                    source: "work",
+                    target: "home_return",
+                    icon: "icons/transport.svg",
+                },
+            ],
+        },
+        day4: {
+            nodes: [
+                { id: "home", icon: "icons/home.svg" },
+                { id: "school", icon: "icons/school.svg" },
+                //{ id: "work", icon: "icons/office.svg" },
+                { id: "home_return", icon: "icons/home.svg" },
+            ],
+            links: [
+                {
+                    source: "home",
+                    target: "school",
+                    icon: "icons/transport.svg",
+                },
+                {
+                    source: "school",
+                    target: "home_return",
+                    icon: "icons/walk.svg",
+                },
+            ],
+        },
+        day5: {
+            nodes: [
+                { id: "home", icon: "icons/home.svg" },
+                { id: "school", icon: "icons/school.svg" },
+                //{ id: "work", icon: "icons/office.svg" },
+                { id: "home_return", icon: "icons/home.svg" },
+            ],
+            links: [
+                {
+                    source: "home",
+                    target: "school",
+                    icon: "icons/walk.svg",
+                },
+                {
+                    source: "school",
+                    target: "home_return",
+                    icon: "icons/walk.svg",
                 },
             ],
         },
