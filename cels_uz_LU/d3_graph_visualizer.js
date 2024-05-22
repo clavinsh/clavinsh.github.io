@@ -22,11 +22,11 @@ document.addEventListener("DOMContentLoaded", function () {
             target: "home_return",
             icon: "icons/walk.svg",
         },
-        // {
-        //     source: "work",
-        //     target: "home_return",
-        //     icon: "icons/transport.svg",
-        // },
+        {
+            source: "work",
+            target: "home_return",
+            icon: "icons/transport.svg",
+        },
     ];
 
     // sets up the graph nodes in a straight line
@@ -49,8 +49,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 .id((d) => d.id)
                 .distance(150)
         )
-        .force("charge", d3.forceManyBody().strength(-400))
-        .force("center", d3.forceCenter(width / 2, height / 2));
+        .force("charge", d3.forceManyBody().strength(-400));
+    //.force("center", d3.forceCenter(width / 2, height / 2));
 
     // arrow head marker defintion that gets placed at the end of a link
     svg.append("defs")
@@ -71,29 +71,19 @@ document.addEventListener("DOMContentLoaded", function () {
         .data(links)
         .enter()
         .append("g")
-        .attr("class", "link")
-        .append("path")
+        .attr("class", "link");
+
+    link.append("path")
+        .attr("class", "link-path")
         .attr("marker-end", "url(#arrow)");
 
-    // const link = svg
-    //     .append("g")
-    //     .attr("fill", "none")
-    //     .attr("stroke-width", 1.5)
-    //     .selectAll("path")
-    //     .data(links)
-    //     .join("path")
-    //     .attr("stroke", (d) => d3.color("white"))
-    //     .attr("marker-end", "url(#arrow)");
-
-    const linkIcons = svg
-        .selectAll(".link-icon")
-        .data(links)
-        .enter()
-        .append("image")
+    link.append("image")
         .attr("class", "link-icon")
-        .attr("xlink:href", (d) => d.icon)
         .attr("width", 24)
-        .attr("height", 24);
+        .attr("height", 24)
+        .attr("x", -12) // Center the image horizontally
+        .attr("y", -12) // Center the image vertically
+        .attr("xlink:href", (d) => d.icon);
 
     const node = svg
         .selectAll(".node")
@@ -116,15 +106,20 @@ document.addEventListener("DOMContentLoaded", function () {
         .attr("class", "icon")
         .attr("width", 24)
         .attr("height", 24)
+        .attr("x", -12) // Center the image horizontally
+        .attr("y", -12) // Center the image vertically
         .on("click", (d) => alert(`Node: ${d.id}`));
 
     // Update positions based on simulation
     simulation.on("tick", () => {
-        link.attr("d", linkArc);
+        link.select(".link-path").attr("d", (d, i) => linkArc(d, i, 12));
 
-        linkIcons
-            .attr("x", (d) => (d.source.x + d.target.x) / 2 - 12)
-            .attr("y", (d) => (d.source.y + d.target.y) / 2 - 12);
+        link.select(".link-icon").attr("transform", function (d) {
+            const path = d3.select(this.parentNode).select(".link-path").node();
+            const length = path.getTotalLength();
+            const midPoint = path.getPointAtLength(length / 2);
+            return `translate(${midPoint.x},${midPoint.y})`;
+        });
 
         node.attr("transform", (d) => `translate(${d.x},${d.y})`);
     });
@@ -146,12 +141,23 @@ document.addEventListener("DOMContentLoaded", function () {
         d.fy = null;
     }
 
-    function linkArc(d) {
-        const linkLength = Math.hypot(
-            d.target.x - d.source.x,
-            d.target.y - d.source.y
-        );
+    function linkArc(d, i, radius) {
+        const dx = d.target.x - d.source.x;
+        const dy = d.target.y - d.source.y;
+        const dr = Math.sqrt(dx * dx + dy * dy) * (1 + (i % 2) * 0.5); // Adjust curvature based on index
+        const xRotation = 0; // No rotation
+        const largeArc = 0; // Arc flags
+        const sweep = i % 2; // Alternate sweep flag for up and down
 
-        return `M${d.source.x},${d.source.y} A${linkLength},${linkLength} 0 0,1 ${d.target.x},${d.target.y}`;
+        const totalLength = Math.sqrt(dx * dx + dy * dy);
+        const offsetX = (dx * radius) / totalLength;
+        const offsetY = (dy * radius) / totalLength;
+
+        const sourceX = d.source.x + offsetX;
+        const sourceY = d.source.y + offsetY;
+        const targetX = d.target.x - offsetX;
+        const targetY = d.target.y - offsetY;
+
+        return `M${sourceX},${sourceY}A${dr},${dr} ${xRotation},${largeArc},${sweep} ${targetX},${targetY}`;
     }
 });
