@@ -2,10 +2,34 @@ window.addEventListener("load", function () {
     const graphData = {
         day1: {
             nodes: [
-                { id: "home", icon: "icons/home.svg" },
-                { id: "school", icon: "icons/school.svg" },
-                { id: "work", icon: "icons/office.svg" },
-                { id: "home_return", icon: "icons/home.svg" },
+                {
+                    id: "home",
+                    icon: "icons/home.svg",
+                    name: "Mājas",
+                    details:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                },
+                {
+                    id: "school",
+                    icon: "icons/school.svg",
+                    name: "Universitāte",
+                    details:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                },
+                {
+                    id: "work",
+                    icon: "icons/office.svg",
+                    name: "Darbs",
+                    details:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                },
+                {
+                    id: "home_return",
+                    icon: "icons/home.svg",
+                    name: "Mājas",
+                    details:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                },
             ],
             links: [
                 {
@@ -27,10 +51,34 @@ window.addEventListener("load", function () {
         },
         day2: {
             nodes: [
-                { id: "home", icon: "icons/home.svg" },
-                { id: "school", icon: "icons/school.svg" },
-                { id: "work", icon: "icons/office.svg" },
-                { id: "home_return", icon: "icons/home.svg" },
+                {
+                    id: "home",
+                    icon: "icons/home.svg",
+                    name: "Mājas",
+                    details:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                },
+                {
+                    id: "school",
+                    icon: "icons/school.svg",
+                    name: "Universitāte",
+                    details:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                },
+                {
+                    id: "work",
+                    icon: "icons/office.svg",
+                    name: "Darbs",
+                    details:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                },
+                {
+                    id: "home_return",
+                    icon: "icons/home.svg",
+                    name: "Mājas",
+                    details:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                },
             ],
             links: [
                 {
@@ -57,10 +105,34 @@ window.addEventListener("load", function () {
         },
         day3: {
             nodes: [
-                { id: "home", icon: "icons/home.svg" },
-                { id: "school", icon: "icons/school.svg" },
-                { id: "work", icon: "icons/office.svg" },
-                { id: "home_return", icon: "icons/home.svg" },
+                {
+                    id: "home",
+                    icon: "icons/home.svg",
+                    name: "Mājas",
+                    details:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                },
+                {
+                    id: "school",
+                    icon: "icons/school.svg",
+                    name: "Universitāte",
+                    details:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                },
+                {
+                    id: "work",
+                    icon: "icons/office.svg",
+                    name: "Darbs",
+                    details:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                },
+                {
+                    id: "home_return",
+                    icon: "icons/home.svg",
+                    name: "Mājas",
+                    details:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                },
             ],
             links: [
                 {
@@ -87,10 +159,27 @@ window.addEventListener("load", function () {
         },
         day4: {
             nodes: [
-                { id: "home", icon: "icons/home.svg" },
-                { id: "school", icon: "icons/school.svg" },
-                //{ id: "work", icon: "icons/office.svg" },
-                { id: "home_return", icon: "icons/home.svg" },
+                {
+                    id: "home",
+                    icon: "icons/home.svg",
+                    name: "Mājas",
+                    details:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                },
+                {
+                    id: "school",
+                    icon: "icons/school.svg",
+                    name: "Universitāte",
+                    details:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                },
+                {
+                    id: "home_return",
+                    icon: "icons/home.svg",
+                    name: "Mājas",
+                    details:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                },
             ],
             links: [
                 {
@@ -107,10 +196,27 @@ window.addEventListener("load", function () {
         },
         day5: {
             nodes: [
-                { id: "home", icon: "icons/home.svg" },
-                { id: "school", icon: "icons/school.svg" },
-                //{ id: "work", icon: "icons/office.svg" },
-                { id: "home_return", icon: "icons/home.svg" },
+                {
+                    id: "home",
+                    icon: "icons/home.svg",
+                    name: "Mājas",
+                    details:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                },
+                {
+                    id: "school",
+                    icon: "icons/school.svg",
+                    name: "Universitāte",
+                    details:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                },
+                {
+                    id: "home_return",
+                    icon: "icons/home.svg",
+                    name: "Mājas",
+                    details:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                },
             ],
             links: [
                 {
@@ -222,7 +328,9 @@ window.addEventListener("load", function () {
                     .on("drag", dragged)
                     .on("end", dragended)
             )
-            .on("click", nodeClick);
+            .on("click", (event, d) => {
+                nodeClick(d);
+            });
 
         // invisible circle around nodes for easier dragging
         node.append("circle")
@@ -319,8 +427,31 @@ window.addEventListener("load", function () {
         container.attr("transform", event.transform);
     }
 
-    function nodeClick(d, i) {
-        console.log("d", d);
-        console.log("i", i);
+    function nodeClick(nodeData) {
+        // console.log("d", d);
+        // console.log("i", i);
+
+        const name = d3.select("#node-name");
+        const details = d3.select("#node-details");
+
+        name.html("");
+        details.html(""); // Clear existing content
+
+        name.html(nodeData.name);
+
+        // details
+        //     .append("h3")
+        //     .attr("class", "text-xl font-bold")
+        //     .text(nodeData.name);
+
+        //details.append("p").text(`Details about ${nodeData.name}:`);
+
+        details.html(nodeData.details);
+        // .append("ul")
+        // .selectAll("li")
+        // .data(nodeData.details)
+        // .enter()
+        // .append("li")
+        // .text((d) => d);
     }
 });
