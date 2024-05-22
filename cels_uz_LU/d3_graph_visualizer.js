@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
             icon: "icons/transport.svg",
         },
     ];
-
     // sets up the graph nodes in a straight line
     nodes.forEach((node, i) => {
         node.x = (i + 1) * 150;
@@ -68,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .attr("orient", "auto-start-reverse")
         .append("path")
         .attr("d", "M 0 0 L 10 5 L 0 10 z")
-        .attr("fill", "#999");
+        .attr("class", "fill-current gray-800 dark:gray-200");
 
     const link = container
         .selectAll(".link")
@@ -78,16 +77,29 @@ document.addEventListener("DOMContentLoaded", function () {
         .attr("class", "link");
 
     link.append("path")
-        .attr("class", "link-path")
+        .attr("class", "link-path stroke-current gray-800 dark:gray-200")
         .attr("marker-end", "url(#arrow)");
 
-    link.append("image")
-        .attr("class", "link-icon")
-        .attr("width", 24)
-        .attr("height", 24)
-        .attr("x", -12) // Center the image horizontally
-        .attr("y", -12) // Center the image vertically
-        .attr("xlink:href", (d) => d.icon);
+    link.each(function (d) {
+        d3.xml(d.icon).then((data) => {
+            const importedNode = document.importNode(
+                data.documentElement,
+                true
+            );
+            const svgElement = d3
+                .select(this)
+                .append("g")
+                .attr("class", "link-icon")
+                //.attr("transform", "translate(-12,-12)") // Center the icon
+                .node()
+                .appendChild(importedNode);
+
+            d3.select(svgElement)
+                .attr("transform", "translate(-12,-12)")
+                .selectAll("path")
+                .attr("class", "fill-current gray-800 dark:gray-200");
+        });
+    });
 
     const node = container
         .selectAll(".node")
@@ -105,14 +117,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 .on("end", dragended)
         );
 
-    node.append("image")
-        .attr("xlink:href", (d) => d.icon)
-        .attr("class", "icon")
-        .attr("width", 24)
-        .attr("height", 24)
-        .attr("x", -12) // Center the image horizontally
-        .attr("y", -12) // Center the image vertically
-        .on("click", nodeClick);
+    node.each(function (d) {
+        d3.xml(d.icon).then((data) => {
+            const importedNode = document.importNode(
+                data.documentElement,
+                true
+            );
+            const svgElement = d3
+                .select(this)
+                .append("g")
+                .attr("class", "node-icon")
+                .attr("transform", "translate(-12,-12)") // Center the icon
+                .node()
+                .appendChild(importedNode);
+
+            d3.select(svgElement)
+                .selectAll("path")
+                .attr("class", "fill-current gray-800 dark:gray-200");
+        });
+    });
 
     // Update positions based on simulation
     simulation.on("tick", () => {
