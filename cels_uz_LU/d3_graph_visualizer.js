@@ -28,6 +28,9 @@ document.addEventListener("DOMContentLoaded", function () {
             icon: "icons/transport.svg",
         },
     ];
+
+    const nodeUIDragRadius = 20;
+
     // sets up the graph nodes in a straight line
     nodes.forEach((node, i) => {
         node.x = (i + 1) * 150;
@@ -115,7 +118,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 .on("start", dragstarted)
                 .on("drag", dragged)
                 .on("end", dragended)
-        );
+        )
+        .on("click", nodeClick);
+
+    // invisible circle around nodes for easier dragging
+    node.append("circle")
+        .attr("r", nodeUIDragRadius)
+        .attr("fill", "transparent")
+        .attr("stroke", "none");
 
     node.each(function (d) {
         d3.xml(d.icon).then((data) => {
@@ -175,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function linkArc(d, i, radius) {
         const dx = d.target.x - d.source.x;
         const dy = d.target.y - d.source.y;
-        const dr = Math.sqrt(dx * dx + dy * dy) * (1 + (i % 2) * 0.5); // Adjust curvature based on index
+        const dr = Math.sqrt(dx * dx + dy * dy) * 0.7;
         const xRotation = 0; // No rotation
         const largeArc = 0; // Arc flags
         const sweep = i % 2; // Alternate sweep flag for up and down
