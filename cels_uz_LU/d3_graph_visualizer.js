@@ -36,8 +36,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     const svg = d3.select("#graph");
-    const width = svg.attr("width");
-    const height = svg.attr("height");
+
+    // zooming behaviour for everything in the 'container'
+    const zoom = d3.zoom().scaleExtent([0.5, 5]).on("zoom", zoomed);
+    svg.call(zoom);
+    const container = svg.append("g");
 
     // force simulation between the graph nodes
     const simulation = d3
@@ -53,7 +56,8 @@ document.addEventListener("DOMContentLoaded", function () {
     //.force("center", d3.forceCenter(width / 2, height / 2));
 
     // arrow head marker defintion that gets placed at the end of a link
-    svg.append("defs")
+    container
+        .append("defs")
         .append("marker")
         .attr("id", "arrow")
         .attr("viewBox", "0 0 10 10")
@@ -66,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .attr("d", "M 0 0 L 10 5 L 0 10 z")
         .attr("fill", "#999");
 
-    const link = svg
+    const link = container
         .selectAll(".link")
         .data(links)
         .enter()
@@ -85,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .attr("y", -12) // Center the image vertically
         .attr("xlink:href", (d) => d.icon);
 
-    const node = svg
+    const node = container
         .selectAll(".node")
         .data(nodes)
         .enter()
@@ -108,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .attr("height", 24)
         .attr("x", -12) // Center the image horizontally
         .attr("y", -12) // Center the image vertically
-        .on("click", (d) => alert(`Node: ${d.id}`));
+        .on("click", nodeClick);
 
     // Update positions based on simulation
     simulation.on("tick", () => {
@@ -123,6 +127,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         node.attr("transform", (d) => `translate(${d.x},${d.y})`);
     });
+
+    function zoomed(event) {
+        container.attr("transform", event.transform);
+    }
 
     function dragstarted(event, d) {
         if (!event.active) simulation.alphaTarget(0.3).restart();
@@ -159,5 +167,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const targetY = d.target.y - offsetY;
 
         return `M${sourceX},${sourceY}A${dr},${dr} ${xRotation},${largeArc},${sweep} ${targetX},${targetY}`;
+    }
+
+    function nodeClick(d, i) {
+        console.log("d", d);
+        console.log("i", i);
     }
 });
