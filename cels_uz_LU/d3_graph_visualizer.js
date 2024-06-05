@@ -8,7 +8,7 @@ const graphData = {
                 details: `Katru dienu uzsāku savās mājās Rīgā, Zolitudē, kur esmu dzīvojis visu savu mūžu. 
                 Tālākais ikdienas ceļš vedīs vai nu uz universitāti, vai darbu. Kas notiks pēc tam? To tad jau redzēs.
                 <br><br>
-                Citās dienas iespējams dienas gaita būs pavisam vienkārša - darbs vai studijas no mājām (bet to attēlot būtu pārāk garlaicīgi :)).
+                Citās dienas gaita iespējams būs pavisam vienkārša - darbs vai studijas no mājām (bet to attēlot būtu pārāk garlaicīgi :)).
                 `,
             },
             {
