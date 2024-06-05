@@ -284,38 +284,6 @@ window.addEventListener("load", function () {
             .attr("d", "M 0 0 L 10 5 L 0 10 z")
             .attr("class", "fill-current gray-800 dark:gray-200");
 
-        const link = container
-            .selectAll(".link")
-            .data(links)
-            .enter()
-            .append("g")
-            .attr("class", "link");
-
-        link.append("path")
-            .attr("class", "link-path stroke-current gray-800 dark:gray-200")
-            .attr("marker-end", "url(#arrow)");
-
-        link.each(function (d) {
-            d3.xml(d.icon).then((data) => {
-                const importedNode = document.importNode(
-                    data.documentElement,
-                    true
-                );
-                const svgElement = d3
-                    .select(this)
-                    .append("g")
-                    .attr("class", "link-icon")
-                    //.attr("transform", "translate(-12,-12)") // Center the icon
-                    .node()
-                    .appendChild(importedNode);
-
-                d3.select(svgElement)
-                    .attr("transform", "translate(-12,-12)")
-                    .selectAll("path")
-                    .attr("class", "fill-current gray-800 dark:gray-200");
-            });
-        });
-
         const node = container
             .selectAll(".node")
             .data(nodes)
@@ -356,6 +324,38 @@ window.addEventListener("load", function () {
                     .appendChild(importedNode);
 
                 d3.select(svgElement)
+                    .selectAll("path")
+                    .attr("class", "fill-current gray-800 dark:gray-200");
+            });
+        });
+
+        const link = container
+            .selectAll(".link")
+            .data(links)
+            .enter()
+            .append("g")
+            .attr("class", "link");
+
+        link.append("path")
+            .attr("class", "link-path stroke-current gray-800 dark:gray-200")
+            .attr("marker-end", "url(#arrow)");
+
+        link.each(function (d) {
+            d3.xml(d.icon).then((data) => {
+                const importedNode = document.importNode(
+                    data.documentElement,
+                    true
+                );
+                const svgElement = d3
+                    .select(this)
+                    .append("g")
+                    .attr("class", "link-icon")
+                    //.attr("transform", "translate(-12,-12)") // Center the icon
+                    .node()
+                    .appendChild(importedNode);
+
+                d3.select(svgElement)
+                    .attr("transform", "translate(-12,-12)")
                     .selectAll("path")
                     .attr("class", "fill-current gray-800 dark:gray-200");
             });
@@ -430,14 +430,13 @@ window.addEventListener("load", function () {
         container.attr("transform", event.transform);
     }
 
-    function nodeClick(event, nodeData) {
-        console.log(event);
+    function unHighlightSelectedNode() {
+        d3.selectAll(".highlight-circle").remove();
+    }
 
+    function nodeClick(event, nodeData) {
         // Clear existing node highlight
-        container
-            .selectAll(".node circle")
-            .attr("stroke", "none")
-            .attr("stroke-width", 0);
+        unHighlightSelectedNode();
 
         // Determine the correct node element to highlight
         let nodeElement = d3.select(event.currentTarget);
@@ -446,10 +445,17 @@ window.addEventListener("load", function () {
         }
 
         // Highlight selected node
-        nodeElement
-            .select("circle")
-            .attr("stroke", "red")
-            .attr("stroke-width", 3);
+        var circle = nodeElement
+            .append("circle")
+            .attr(
+                "class",
+                "highlight-circle fill-current text-white dark:text-gray-800"
+            )
+            .attr("r", 20) // Adjust the radius as necessary
+            .attr("stroke-width", 3)
+            .node();
+
+        nodeElement.node().insertBefore(circle, nodeElement.node().firstChild);
 
         // Set the new  explanation content
         const name = d3.select("#node-name");
@@ -457,5 +463,15 @@ window.addEventListener("load", function () {
 
         name.html(nodeData.name);
         details.html(nodeData.details);
+        // if the event bubbles up to the svg unHighlightSelectedNode() will execute
+        // because of the graph click event (unhighlight when clicking anywhere in the graph)
+        event.stopPropagation();
     }
+
+    // remove node selection highlighter when user clicks anywhere in the graph that is not a node
+    this.document
+        .getElementById("graph")
+        .addEventListener("click", function (e) {
+            unHighlightSelectedNode();
+        });
 });
