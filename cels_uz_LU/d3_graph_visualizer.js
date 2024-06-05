@@ -1,261 +1,289 @@
-window.addEventListener("load", function () {
-    const graphData = {
-        day1: {
-            nodes: [
-                {
-                    id: "home",
-                    icon: "icons/home.svg",
-                    name: "Mājas",
-                    details: `Katru dienu uzsāku savās mājās Rīgā, Zolitudē, kur esmu dzīvojis visu savu mūžu. 
-                    Tālākais ikdienas ceļš vedīs vai nu uz universitāti, vai darbu. Kas notiks pēc tam? To tad jau redzēs.
-                    <br><br>
-                    Citās dienas iespējams dienas gaita būs pavisam vienkārša - darbs vai studijas no mājām (bet to attēlot būtu pārāk garlaicīgi :)).
-                    `,
-                },
-                {
-                    id: "school",
-                    icon: "icons/school.svg",
-                    name: "Universitāte",
-                    details:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
-                },
-                {
-                    id: "work",
-                    icon: "icons/office.svg",
-                    name: "Darbs",
-                    details:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
-                },
-                {
-                    id: "home_return",
-                    icon: "icons/home.svg",
-                    name: "Mājas",
-                    details:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
-                },
-            ],
-            links: [
-                {
-                    source: "home",
-                    target: "school",
-                    icon: "icons/transport.svg",
-                },
-                {
-                    source: "school",
-                    target: "work",
-                    icon: "icons/walk.svg",
-                },
-                {
-                    source: "work",
-                    target: "home_return",
-                    icon: "icons/transport.svg",
-                },
-            ],
-        },
-        day2: {
-            nodes: [
-                {
-                    id: "home",
-                    icon: "icons/home.svg",
-                    name: "Mājas",
-                    details:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
-                },
-                {
-                    id: "school",
-                    icon: "icons/school.svg",
-                    name: "Universitāte",
-                    details:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
-                },
-                {
-                    id: "work",
-                    icon: "icons/office.svg",
-                    name: "Darbs",
-                    details:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
-                },
-                {
-                    id: "home_return",
-                    icon: "icons/home.svg",
-                    name: "Mājas",
-                    details:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
-                },
-            ],
-            links: [
-                {
-                    source: "home",
-                    target: "school",
-                    icon: "icons/transport.svg",
-                },
-                {
-                    source: "school",
-                    target: "work",
-                    icon: "icons/transport.svg",
-                },
-                {
-                    source: "work",
-                    target: "home_return",
-                    icon: "icons/walk.svg",
-                },
-                {
-                    source: "work",
-                    target: "home_return",
-                    icon: "icons/transport.svg",
-                },
-            ],
-        },
-        day3: {
-            nodes: [
-                {
-                    id: "home",
-                    icon: "icons/home.svg",
-                    name: "Mājas",
-                    details:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
-                },
-                {
-                    id: "school",
-                    icon: "icons/school.svg",
-                    name: "Universitāte",
-                    details:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
-                },
-                {
-                    id: "work",
-                    icon: "icons/office.svg",
-                    name: "Darbs",
-                    details:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
-                },
-                {
-                    id: "home_return",
-                    icon: "icons/home.svg",
-                    name: "Mājas",
-                    details:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
-                },
-            ],
-            links: [
-                {
-                    source: "home",
-                    target: "school",
-                    icon: "icons/transport.svg",
-                },
-                {
-                    source: "home",
-                    target: "work",
-                    icon: "icons/transport.svg",
-                },
-                {
-                    source: "school",
-                    target: "home_return",
-                    icon: "icons/walk.svg",
-                },
-                {
-                    source: "work",
-                    target: "home_return",
-                    icon: "icons/transport.svg",
-                },
-            ],
-        },
-        day4: {
-            nodes: [
-                {
-                    id: "home",
-                    icon: "icons/home.svg",
-                    name: "Mājas",
-                    details:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
-                },
-                {
-                    id: "school",
-                    icon: "icons/school.svg",
-                    name: "Universitāte",
-                    details:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
-                },
-                {
-                    id: "home_return",
-                    icon: "icons/home.svg",
-                    name: "Mājas",
-                    details:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
-                },
-            ],
-            links: [
-                {
-                    source: "home",
-                    target: "school",
-                    icon: "icons/transport.svg",
-                },
-                {
-                    source: "school",
-                    target: "home_return",
-                    icon: "icons/walk.svg",
-                },
-            ],
-        },
-        day5: {
-            nodes: [
-                {
-                    id: "home",
-                    icon: "icons/home.svg",
-                    name: "Mājas",
-                    details:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
-                },
-                {
-                    id: "school",
-                    icon: "icons/school.svg",
-                    name: "Universitāte",
-                    details:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
-                },
-                {
-                    id: "home_return",
-                    icon: "icons/home.svg",
-                    name: "Mājas",
-                    details:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
-                },
-            ],
-            links: [
-                {
-                    source: "home",
-                    target: "school",
-                    icon: "icons/walk.svg",
-                },
-                {
-                    source: "school",
-                    target: "home_return",
-                    icon: "icons/walk.svg",
-                },
-            ],
-        },
-    };
+const graphData = {
+    day1: {
+        nodes: [
+            {
+                id: "home",
+                icon: "icons/home.svg",
+                name: "Mājas",
+                details: `Katru dienu uzsāku savās mājās Rīgā, Zolitudē, kur esmu dzīvojis visu savu mūžu. 
+                Tālākais ikdienas ceļš vedīs vai nu uz universitāti, vai darbu. Kas notiks pēc tam? To tad jau redzēs.
+                <br><br>
+                Citās dienas iespējams dienas gaita būs pavisam vienkārša - darbs vai studijas no mājām (bet to attēlot būtu pārāk garlaicīgi :)).
+                `,
+            },
+            {
+                id: "school",
+                icon: "icons/school.svg",
+                name: "Universitāte",
+                details: `Pirmdienās jādodas uz Raiņa bulvāri - galveno Latvijas Universitātes ēku.`,
+            },
+            {
+                id: "work",
+                icon: "icons/office.svg",
+                name: "Darbs",
+                details: `Ap plkst. 12.00 beigušās lekcijas, un nu ir laiks iegūtās zināšanas praktiski pielietot, tai pat laikā palielinot IKP!
+                <br><br>
+                Jādodas uz darbu. Visdrīzāk uz kādu sapulci, tās parasti notiek pirmdienā. `,
+            },
+            {
+                id: "home_return",
+                icon: "icons/home.svg",
+                name: "Mājas",
+                details: `Diena nu galā! Esam mājās! 
+                Kas tik notiks rīt?
+                <br><br>
+                Droši apskati pārējās nedēļas dienas!
+                `,
+            },
+        ],
+        links: [
+            {
+                source: "home",
+                target: "school",
+                icon: "icons/transport.svg",
+            },
+            {
+                source: "school",
+                target: "work",
+                icon: "icons/walk.svg",
+            },
+            {
+                source: "work",
+                target: "home_return",
+                icon: "icons/transport.svg",
+            },
+        ],
+    },
+    day2: {
+        nodes: [
+            {
+                id: "home",
+                icon: "icons/home.svg",
+                name: "Mājas",
+                details: `Labs rīts otrdienā!
+                <br><br>
+                Dienu joprojāmu sāku Zolitūdē, nekas nav mainījies.  Brokastīs visdrīzāk kafija un kāda desmaize, ja vien neesmu aizgulējies, tad gan pieturos pie bez-brokastu diētas.
+                <br><br>
+                Ja tomēr viss iet pēc plāna un brokastis ir notiesātas, tad doties tālāk esmu gatavs ap plkst. 7.00.
+                `,
+            },
+            {
+                id: "school",
+                icon: "icons/school.svg",
+                name: "Universitāte",
+                details:
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+            },
+            {
+                id: "work",
+                icon: "icons/office.svg",
+                name: "Darbs",
+                details:
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+            },
+            {
+                id: "home_return",
+                icon: "icons/home.svg",
+                name: "Mājas",
+                details:
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+            },
+        ],
+        links: [
+            {
+                source: "home",
+                target: "school",
+                icon: "icons/transport.svg",
+            },
+            {
+                source: "school",
+                target: "work",
+                icon: "icons/transport.svg",
+            },
+            {
+                source: "work",
+                target: "home_return",
+                icon: "icons/walk.svg",
+            },
+            {
+                source: "work",
+                target: "home_return",
+                icon: "icons/transport.svg",
+            },
+        ],
+    },
+    day3: {
+        nodes: [
+            {
+                id: "home",
+                icon: "icons/home.svg",
+                name: "Mājas",
+                details: `Trešdiena - mazā sestdiena
+                <br><br>`,
+            },
+            {
+                id: "school",
+                icon: "icons/school.svg",
+                name: "Universitāte",
+                details:
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+            },
+            {
+                id: "work",
+                icon: "icons/office.svg",
+                name: "Darbs",
+                details:
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+            },
+            {
+                id: "home_return",
+                icon: "icons/home.svg",
+                name: "Mājas",
+                details:
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+            },
+        ],
+        links: [
+            {
+                source: "home",
+                target: "school",
+                icon: "icons/transport.svg",
+            },
+            {
+                source: "home",
+                target: "work",
+                icon: "icons/transport.svg",
+            },
+            {
+                source: "school",
+                target: "home_return",
+                icon: "icons/walk.svg",
+            },
+            {
+                source: "work",
+                target: "home_return",
+                icon: "icons/transport.svg",
+            },
+        ],
+    },
+    day4: {
+        nodes: [
+            {
+                id: "home",
+                icon: "icons/home.svg",
+                name: "Mājas",
+                details:
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+            },
+            {
+                id: "school",
+                icon: "icons/school.svg",
+                name: "Universitāte",
+                details:
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+            },
+            {
+                id: "home_return",
+                icon: "icons/home.svg",
+                name: "Mājas",
+                details:
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+            },
+        ],
+        links: [
+            {
+                source: "home",
+                target: "school",
+                icon: "icons/transport.svg",
+            },
+            {
+                source: "school",
+                target: "home_return",
+                icon: "icons/walk.svg",
+            },
+        ],
+    },
+    day5: {
+        nodes: [
+            {
+                id: "home",
+                icon: "icons/home.svg",
+                name: "Mājas",
+                details:
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+            },
+            {
+                id: "school",
+                icon: "icons/school.svg",
+                name: "Universitāte",
+                details:
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+            },
+            {
+                id: "home_return",
+                icon: "icons/home.svg",
+                name: "Mājas",
+                details:
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+            },
+        ],
+        links: [
+            {
+                source: "home",
+                target: "school",
+                icon: "icons/walk.svg",
+            },
+            {
+                source: "school",
+                target: "home_return",
+                icon: "icons/walk.svg",
+            },
+        ],
+    },
+};
 
+window.addEventListener("load", function () {
     const nodeUIDragRadius = 20;
 
     const svg = d3.select("#graph");
+
+    // Set initial viewBox
+    svg.attr(
+        "viewBox",
+        `0 0 ${svg.node().clientWidth} ${svg.node().clientHeight}`
+    );
 
     // zooming behaviour for everything in the 'container'
     const zoom = d3.zoom().scaleExtent([0.5, 5]).on("zoom", zoomed);
     svg.call(zoom);
     const container = svg.append("g");
 
+    const nodeGroup = container.append("g").attr("class", "nodes");
+    const linkGroup = container.append("g").attr("class", "links");
+
     function loadGraph(day) {
-        container.selectAll("*").remove(); //clear existing graph
+        //clear existing graph
+        linkGroup.selectAll("*").remove();
+        nodeGroup.selectAll("*").remove();
 
         const { nodes, links } = graphData[day];
 
         // sets up the graph nodes in a straight line
-        nodes.forEach((node, i) => {
-            node.x = (i + 1) * 150;
-            node.y = 250;
-        });
+        const viewBoxWidth = svg.node().viewBox.baseVal.width;
+        const viewBoxHeight = svg.node().viewBox.baseVal.height;
 
+        const centerX = viewBoxWidth / 2;
+        const centerY = viewBoxHeight / 2;
+
+        // Dynamically set up the graph nodes based on viewBox dimensions, placing them further apart horizontally
+        nodes.forEach((node, i) => {
+            const spacing =
+                (i - (nodes.length - 1) / 2) *
+                (viewBoxWidth / (nodes.length + 1)) *
+                1.5; // Spread out horizontally
+            node.x = centerX + spacing;
+            node.y = centerY; // Keep vertically centered
+        });
         // force simulation between the graph nodes
         const simulation = d3
             .forceSimulation(nodes)
@@ -267,7 +295,13 @@ window.addEventListener("load", function () {
                     .distance(150)
             )
             .force("charge", d3.forceManyBody().strength(-400));
-        //.force("center", d3.forceCenter(width / 2, height / 2));
+
+        // Center the SVG content by applying an initial transform
+        const initialTransform = d3.zoomIdentity.translate(
+            viewBoxWidth / 2 - centerX,
+            viewBoxHeight / 2 - centerY
+        );
+        svg.call(zoom.transform, initialTransform);
 
         // arrow head marker defintion that gets placed at the end of a link
         container
@@ -284,7 +318,7 @@ window.addEventListener("load", function () {
             .attr("d", "M 0 0 L 10 5 L 0 10 z")
             .attr("class", "fill-current gray-800 dark:gray-200");
 
-        const node = container
+        const node = nodeGroup
             .selectAll(".node")
             .data(nodes)
             .enter()
@@ -329,7 +363,7 @@ window.addEventListener("load", function () {
             });
         });
 
-        const link = container
+        const link = linkGroup
             .selectAll(".link")
             .data(links)
             .enter()
@@ -350,7 +384,6 @@ window.addEventListener("load", function () {
                     .select(this)
                     .append("g")
                     .attr("class", "link-icon")
-                    //.attr("transform", "translate(-12,-12)") // Center the icon
                     .node()
                     .appendChild(importedNode);
 
@@ -363,6 +396,8 @@ window.addEventListener("load", function () {
 
         // Update positions based on simulation
         simulation.on("tick", () => {
+            node.attr("transform", (d) => `translate(${d.x},${d.y})`);
+
             link.select(".link-path").attr("d", (d, i) => linkArc(d, i, 12));
 
             link.select(".link-icon").attr("transform", function (d) {
@@ -374,9 +409,15 @@ window.addEventListener("load", function () {
                 const midPoint = path.getPointAtLength(length / 2);
                 return `translate(${midPoint.x},${midPoint.y})`;
             });
-
-            node.attr("transform", (d) => `translate(${d.x},${d.y})`);
         });
+
+        // Select the first node when the graph loads
+        const firstNode = nodeGroup.select(".node").node();
+        if (firstNode) {
+            firstNode.dispatchEvent(new Event("click"));
+        }
+
+        //fitToViewBox(nodes);
 
         function dragstarted(event, d) {
             if (!event.active) simulation.alphaTarget(0.3).restart();
@@ -414,6 +455,34 @@ window.addEventListener("load", function () {
 
             return `M${sourceX},${sourceY}A${dr},${dr} ${xRotation},${largeArc},${sweep} ${targetX},${targetY}`;
         }
+
+        function fitToViewBox(nodes) {
+            const bounds = container.node().getBBox();
+            const fullWidth = svg.node().clientWidth;
+            const fullHeight = svg.node().clientHeight;
+
+            const width = bounds.width;
+            const height = bounds.height;
+
+            const midX = bounds.x + width / 2;
+            const midY = bounds.y + height / 2;
+
+            const scale =
+                0.85 / Math.max(width / fullWidth, height / fullHeight);
+            const translate = [
+                fullWidth / 2 - scale * midX,
+                fullHeight / 2 - scale * midY,
+            ];
+
+            svg.transition()
+                .duration(750)
+                .call(
+                    zoom.transform,
+                    d3.zoomIdentity
+                        .translate(translate[0], translate[1])
+                        .scale(scale)
+                );
+        }
     }
 
     let daySelection = document.getElementById("day-select");
@@ -423,6 +492,7 @@ window.addEventListener("load", function () {
         loadGraph(selectedDay);
     });
 
+    // to load the graph when page is opened/loaded
     var event = new Event("change");
     daySelection.dispatchEvent(event);
 
@@ -474,4 +544,12 @@ window.addEventListener("load", function () {
         .addEventListener("click", function (e) {
             unHighlightSelectedNode();
         });
+
+    // // Resize handler
+    // window.addEventListener("resize", function () {
+    //     const width = svg.node().clientWidth;
+    //     const height = svg.node().clientHeight;
+    //     svg.attr("viewBox", `0 0 ${width} ${height}`);
+    //     // Optionally, you might want to reapply the zoom behavior or update the positions/scales
+    // });
 });

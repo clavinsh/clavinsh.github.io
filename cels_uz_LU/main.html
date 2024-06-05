@@ -9,13 +9,6 @@
         <script>
             tailwind.config = {
                 darkMode: "class",
-                // theme: {
-                //     extend: {
-                //         colors: {
-                //             gray: "##223843",
-                //         },
-                //     },
-                // },
             };
         </script>
         <style>
@@ -30,11 +23,15 @@
         <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
         <script src="d3_graph_visualizer.js"></script>
     </head>
-    <body class="bg-gray-200 text-gray-800 dark:bg-gray-900 dark:text-gray-200">
+    <body
+        class="bg-gray-200 text-gray-800 dark:bg-gray-900 dark:text-gray-200 min-h-screen flex flex-col"
+    >
         <header
             class="bg-gray-200 dark:bg-gray-900 border-b border-gray-800 dark:border-gray-200 py-4"
         >
-            <div class="container mx-auto flex justify-between items-center">
+            <div
+                class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center"
+            >
                 <div class="flex items-center">
                     <div class="text-xl font-bold">ARTŪRS KĻAVIŅŠ</div>
                     <nav class="ml-6">
@@ -104,12 +101,11 @@
                 </div>
             </div>
         </header>
-        <main class="py-12">
-            <div class="container mx-auto">
+        <main class="flex-grow py-12">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <h1 class="text-4xl font-bold mb-6 text-left">
                     Mans ceļš uz LU
                 </h1>
-
                 <div class="flex flex-wrap -mx-2 flex-equal">
                     <div class="relative w-full md:w-2/3 px-2">
                         <form
@@ -140,8 +136,8 @@
                             <svg
                                 id="graph"
                                 class="w-full h-full"
-                                width="960"
-                                height="600"
+                                preserveAspectRatio="xMidYMid meet"
+                                viewBox="0 0 960 600"
                             ></svg>
                         </div>
                     </div>
@@ -161,7 +157,7 @@
         <footer
             class="bg-gray-200 dark:bg-gray-900 border-t border-gray-800 dark:border-gray-200 py-4 text-center"
         >
-            <div class="container mx-auto">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <p>&copy; 2024 Artūrs Klaviņš</p>
             </div>
         </footer>
