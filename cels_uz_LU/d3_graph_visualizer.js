@@ -332,7 +332,7 @@ window.addEventListener("load", function () {
                     .on("end", dragended)
             )
             .on("click", (event, d) => {
-                nodeClick(d);
+                nodeClick(event, d);
             });
 
         // invisible circle around nodes for easier dragging
@@ -430,31 +430,32 @@ window.addEventListener("load", function () {
         container.attr("transform", event.transform);
     }
 
-    function nodeClick(nodeData) {
-        // console.log("d", d);
-        // console.log("i", i);
+    function nodeClick(event, nodeData) {
+        console.log(event);
 
+        // Clear existing node highlight
+        container
+            .selectAll(".node circle")
+            .attr("stroke", "none")
+            .attr("stroke-width", 0);
+
+        // Determine the correct node element to highlight
+        let nodeElement = d3.select(event.currentTarget);
+        if (!nodeElement.classed("node")) {
+            nodeElement = d3.select(event.target.closest(".node"));
+        }
+
+        // Highlight selected node
+        nodeElement
+            .select("circle")
+            .attr("stroke", "red")
+            .attr("stroke-width", 3);
+
+        // Set the new  explanation content
         const name = d3.select("#node-name");
         const details = d3.select("#node-details");
 
-        name.html("");
-        details.html(""); // Clear existing content
-
         name.html(nodeData.name);
-
-        // details
-        //     .append("h3")
-        //     .attr("class", "text-xl font-bold")
-        //     .text(nodeData.name);
-
-        //details.append("p").text(`Details about ${nodeData.name}:`);
-
         details.html(nodeData.details);
-        // .append("ul")
-        // .selectAll("li")
-        // .data(nodeData.details)
-        // .enter()
-        // .append("li")
-        // .text((d) => d);
     }
 });
