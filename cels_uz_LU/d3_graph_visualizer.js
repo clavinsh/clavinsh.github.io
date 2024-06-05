@@ -6,16 +6,19 @@ const graphData = {
                 icon: "icons/home.svg",
                 name: "Mājas",
                 details: `Katru dienu uzsāku savās mājās Rīgā, Zolitudē, kur esmu dzīvojis visu savu mūžu. 
-                Tālākais ikdienas ceļš vedīs vai nu uz universitāti, vai darbu. Kas notiks pēc tam? To tad jau redzēs.
+                Tālākais ikdienas ceļš vedīs vai nu uz universitāti, vai darbu. Kas notiks pēc tam, to tad jau redzēs.
                 <br><br>
-                Citās dienas gaita iespējams būs pavisam vienkārša - darbs vai studijas no mājām (bet to attēlot būtu pārāk garlaicīgi :)).
+                Citās dienās ceļš iespējams būs vienkāršāks - darbs vai studijas no mājām (bet to attēlot būtu pārāk garlaicīgi :)).
                 `,
             },
             {
                 id: "school",
                 icon: "icons/school.svg",
                 name: "Universitāte",
-                details: `Pirmdienās jādodas uz Raiņa bulvāri - galveno Latvijas Universitātes ēku.`,
+                details: `Pirmdienās jādodas uz Raiņa bulvāri - galveno Latvijas Universitātes ēku.
+                <br><br>
+                Agrāk to veicu ar velosipēdu, bet tā kā ar tikšanu ēkas iekšpagalmā ir kā ir, un uz ielas savu velo īpaši nevēlos atstāt, tad pēdējā laikā ceļu veicu ar 53. autobusu līdz Esplanādei. 
+                `,
             },
             {
                 id: "work",
@@ -23,7 +26,9 @@ const graphData = {
                 name: "Darbs",
                 details: `Ap plkst. 12.00 beigušās lekcijas, un nu ir laiks iegūtās zināšanas praktiski pielietot, tai pat laikā palielinot IKP!
                 <br><br>
-                Jādodas uz darbu. Visdrīzāk uz kādu sapulci, tās parasti notiek pirmdienā. `,
+                Jādodas uz darbu. Visdrīzāk uz kādu sapulci, tās parasti notiek pirmdienā. Darbavieta nu vairs nav tik tālu, lai vienmēr brauktu ar autobusu. Dažreiz noder arī kāda pastaiga. 
+                <br><br>
+                Ceļu līdz Āgenskalnam veicu ar kājam. `,
             },
             {
                 id: "home_return",
@@ -71,22 +76,30 @@ const graphData = {
                 id: "school",
                 icon: "icons/school.svg",
                 name: "Universitāte",
-                details:
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                details: `Esmu ieradies uz rīta lekciju plkst. 8.30. Ik pa kādai nedēļai, dodoties no Esplanādes uz LU ēku Raiņa bulvārī, atceros, ka pagājušajā nedēļa bija nedaudz tumšāks.
+                <br><br>
+                Tāds nu ir tas pavasara semestris! Lai gan, tuvojoties sesijai, pārmaiņas vairs jau nevar tik ļoti manīt, tās notiek nedaudz par agru.
+                `,
             },
             {
                 id: "work",
                 icon: "icons/office.svg",
                 name: "Darbs",
-                details:
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                details: `Ja uzmanīgi lasīji, iespējams pamanīji, ka šoreiz uz darbu es braucu ar autobusu, nevis gāju ar kājam. Kā tad tā?!
+                <br><br>
+                Dažu kilometru pastaiga tomēr prasa savu laiku, un vienmēr nevar kavēties, pastrādāt arī vajag.
+                <br><br>
+                Tāpēc, atkarībā no garastāvokļa, gājienu es nolieku uz atgriešanos mājās vai arī uz citu dienu.`,
             },
             {
                 id: "home_return",
                 icon: "icons/home.svg",
                 name: "Mājas",
-                details:
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                details: `Diena nu galā! Esam mājās! 
+                Kas tik notiks rīt?
+                <br><br>
+                Droši apskati pārējās nedēļas dienas!
+                `,
             },
         ],
         links: [
@@ -118,29 +131,32 @@ const graphData = {
                 id: "home",
                 icon: "icons/home.svg",
                 name: "Mājas",
-                details: `Trešdiena - mazā sestdiena
-                <br><br>`,
+                details: `Trešdiena - mazā sestdiena.
+                <br><br>
+                Šī varētu būt tā interesantākā diena, pastāv divi sākuma maršruti! Rīta lekcijai, lai gan tā notiek klātienē, iespējams pieslēgties arī attālināti. 
+                Tāpēc ir dienas, kad braucu ar autobusu klātienē, kad braucu uz darbu un iegūstu zināšanas darba vietā, un dienas kad veicu abus attālināti.`,
             },
             {
                 id: "school",
                 icon: "icons/school.svg",
                 name: "Universitāte",
-                details:
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                details: `Šodien starp lekcijām ir garas pauzes, tāpēc nākas atrast darāmo vai nu LU bibliotēkā, vai kādā kafejnīcā.`,
             },
             {
                 id: "work",
                 icon: "icons/office.svg",
                 name: "Darbs",
-                details:
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                details: `Ja izlēmu doties uz darbu, tad nāksies palikt nedaudz ilgāk ofisā, jo tomēr skaitās pilnas slodzes darbs, lai gan ir daži bonusi, būdams, ka esmu students.`,
             },
             {
                 id: "home_return",
                 icon: "icons/home.svg",
                 name: "Mājas",
-                details:
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                details: `Diena nu galā! Esam mājās! 
+                Kas tik notiks rīt?
+                <br><br>
+                Droši apskati pārējās nedēļas dienas!
+                `,
             },
         ],
         links: [
@@ -172,22 +188,29 @@ const graphData = {
                 id: "home",
                 icon: "icons/home.svg",
                 name: "Mājas",
-                details:
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                details: `Šī diena tāda dīvaina.
+                <br><br>
+                Ja nebūtu šajā semestrī paņēmus specsemināru, tad vispār uz universītati nebūtu jādodas. Tad rodas jautājums: "Kā tad ar darbu?"
+                To šodien var veikt pilnībā attālināti! Protams, vienmēr rodas kādi izņēmumi, bet nu visus attēlot gan negribētos.
+                `,
             },
             {
                 id: "school",
                 icon: "icons/school.svg",
                 name: "Universitāte",
-                details:
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                details: `Kad darbs padarīts, vakara pusē ir specseminārs, jādodas uz universitāti plkst. 18.00.
+                Žēl ka tik vēlu, bet nu kā ir, tā ir.
+                `,
             },
             {
                 id: "home_return",
                 icon: "icons/home.svg",
                 name: "Mājas",
-                details:
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                details: `Diena nu galā! Esam mājās! 
+                Kas tik notiks rīt?
+                <br><br>
+                Droši apskati pārējās nedēļas dienas!
+                `,
             },
         ],
         links: [
@@ -209,22 +232,30 @@ const graphData = {
                 id: "home",
                 icon: "icons/home.svg",
                 name: "Mājas",
-                details:
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                details: `Nedēļas nogale jau pavisam tuvu!
+                <br><br>
+                Šodien patīkami, ka nav jāsēž nekādos rīta sastrēgumos, pilnos autobusos ar klusiem, pusaizmigušiem cilvēkiem. Visu var paveikt ar kājām, jo jādodas uz LU Izglītības zinātņu un psiholoģijas fakultāti Imantā. Zolitūdei pavisam tuvu.
+                <br><br>
+                Ko tad es tur daru? Gleznoju! Interesanti sanāca kā eksaktam cilvēkam paņemt šādu C izvēles kursu, pavisam kas savādāks no ikdienas, kas pat ir patīkami, nevis baisi.`,
             },
             {
                 id: "school",
                 icon: "icons/school.svg",
                 name: "Universitāte",
-                details:
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                details: `Laiks gleznot!
+                <br><br>
+                Otas un guaša krāsas neesmu aizticis pāris gadus (iemaņas man tāpat praktiski nebija), tā kā nācās visu macīties no nulles. Bet ir interesanti, redzēt progresu starp darbiem.
+                `,
             },
             {
                 id: "home_return",
                 icon: "icons/home.svg",
                 name: "Mājas",
-                details:
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus pretium suscipit. Etiam facilisis turpis enim, non maximus quam vehicula tempor.<br><br> Phasellus sit amet mi nec urna ultricies auctor et euismod lorem. Vivamus sagittis nulla dolor, quis euismod purus ultrices non. Nam semper urna enim, et rhoncus nunc sollicitudin quis. Sed ac hendrerit orci. Vivamus elementum pulvinar aliquam.<br><br> Integer ullamcorper interdum tincidunt. Aenean lacinia mauris id lobortis elementum. ",
+                details: `Nedēļa nu ir galā!
+                Kas tik notiks nākamnedēļ?
+                <br><br>
+                Droši apskati pārējās nedēļas dienas!
+                `,
             },
         ],
         links: [
@@ -316,7 +347,7 @@ window.addEventListener("load", function () {
             .attr("orient", "auto-start-reverse")
             .append("path")
             .attr("d", "M 0 0 L 10 5 L 0 10 z")
-            .attr("class", "fill-current gray-800 dark:gray-200");
+            .attr("class", "fill-current dark-800 dark:dark-200");
 
         const node = nodeGroup
             .selectAll(".node")
@@ -359,7 +390,7 @@ window.addEventListener("load", function () {
 
                 d3.select(svgElement)
                     .selectAll("path")
-                    .attr("class", "fill-current gray-800 dark:gray-200");
+                    .attr("class", "fill-current dark-800 dark:dark-200");
             });
         });
 
@@ -371,7 +402,7 @@ window.addEventListener("load", function () {
             .attr("class", "link");
 
         link.append("path")
-            .attr("class", "link-path stroke-current gray-800 dark:gray-200")
+            .attr("class", "link-path stroke-current dark-800 dark:dark-200")
             .attr("marker-end", "url(#arrow)");
 
         link.each(function (d) {
@@ -390,7 +421,7 @@ window.addEventListener("load", function () {
                 d3.select(svgElement)
                     .attr("transform", "translate(-12,-12)")
                     .selectAll("path")
-                    .attr("class", "fill-current gray-800 dark:gray-200");
+                    .attr("class", "fill-current dark-800 dark:dark-200");
             });
         });
 
@@ -519,7 +550,7 @@ window.addEventListener("load", function () {
             .append("circle")
             .attr(
                 "class",
-                "highlight-circle fill-current text-white dark:text-gray-800"
+                "highlight-circle fill-current text-gray-100 dark:text-dark-800"
             )
             .attr("r", 20) // Adjust the radius as necessary
             .attr("stroke-width", 3)
