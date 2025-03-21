@@ -47,6 +47,43 @@
       background: #333;
       color: #ffffff;
     }
+
+    /* Hover text indicator */
+    .click-indicator {
+      font-size: 14px;
+      font-style: italic;
+      color: #aaa;
+      margin-top: 10px;
+    }
+
+    /* Arrow and bubble */
+    .arrow-container {
+      position: absolute;
+      display: none;
+    }
+
+    .arrow {
+      width: 0;
+      height: 0;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-bottom: 20px solid #ff6347; /* Orange arrow */
+      position: absolute;
+      top: -10px;
+    }
+
+    .bubble {
+      background-color: #333;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 6px;
+      position: absolute;
+      top: -40px; /* Space for bubble above arrow */
+      left: 30px; /* Align with arrow */
+      max-width: 150px;
+      font-size: 14px;
+    }
+
     .marker {
       background-color: #ff6347;
       border-radius: 50%;
@@ -64,14 +101,25 @@
 </head>
 <body>
   <div class="container">
-      <h1>Super profesionāla pasākuma vizualizācija</h1>
+    <h1>Super profesionāla pasākuma vizualizācija</h1>
     <div id="map"></div>
     
     <div class="locations-list">
       <h2>Notikumi un laiki</h2>
       <hr>
       <div id="locations-container"></div>
+      
+      <!-- Indicator text -->
+      <div class="click-indicator">
+        <strong>Uz šitiem var spiest, es centos uztaisīt interaktīvu karti 🥹🙏</strong>
+      </div>
     </div>
+  </div>
+
+  <!-- Arrow and Bubble initially hidden, will be shown dynamically -->
+  <div id="arrow-container" class="arrow-container">
+    <div class="arrow"></div>
+    <div class="bubble"></div>
   </div>
 
   <script src="./karte.js"></script>
