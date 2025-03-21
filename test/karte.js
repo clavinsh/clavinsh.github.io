@@ -12,7 +12,7 @@ const locations = [
   {
     name: "Ķemeri",
     coordinates: [56.9427495, 23.48536],
-    description: "22. marts, 13:00 - 23. marts, xx:xx"
+    description: "22. marts, ~17:00 - 23. marts, xx:xx"
   }
 ];
 
