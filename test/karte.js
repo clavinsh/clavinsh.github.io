@@ -5,6 +5,11 @@ const locations = [
     description: "22. marts, 12:00 - 13:00"
   },
   {
+    name: "Iepirkšanās",
+    coordinates: [56.929892714440314, 24.036465991793996],
+    description: "22. marts, 13:00 - ~16:00"
+  },
+  {
     name: "Ķemeri",
     coordinates: [56.9427495, 23.48536],
     description: "22. marts, 13:00 - 23. marts, xx:xx"
