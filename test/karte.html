@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Interactive Map with OpenStreetMap</title>
+  <style>
+    /* Dark mode styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+    h1, h2 {
+      text-align: center;
+      color: #ffffff;
+    }
+    #map {
+      width: 100%;
+      height: 500px;
+      border-radius: 4px;
+    }
+    .locations-list {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #333;
+      border-radius: 4px;
+      background-color: #252525;
+    }
+    .location-item {
+      padding: 12px;
+      border-bottom: 1px solid #444;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+      font-size: 16px;
+      color: #e0e0e0;
+    }
+    .location-item:hover {
+      background: #333;
+      color: #ffffff;
+    }
+    .marker {
+      background-color: #ff6347;
+      border-radius: 50%;
+      border: 2px solid white;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255,99,71,0.5);
+      width: 20px !important;
+      height: 20px !important;
+      margin-left: -10px !important;
+      margin-top: -10px !important;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>🌙 Interactive Dark Mode Map</h1>
+    <div id="map"></div>
+    
+    <!-- Always Visible Location List -->
+    <div class="locations-list">
+      <h2>Locations</h2>
+      <hr>
+      <div id="locations-container"></div>
+    </div>
+  </div>
+
+  <script src="./karte.js"></script>
+</body>
+</html>
+

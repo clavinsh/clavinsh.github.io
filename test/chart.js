@@ -26,9 +26,28 @@ const locations = [
 const width = document.getElementById('map').clientWidth;
 const height = document.getElementById('map').clientHeight; 
 
-const projection = d3.geoNaturalEarth1()
-  .scale(width / 6)
-  .translate([width / 2, height / 1.8]);
+// Calculate the bounds to fit both points
+const points = locations.map(d => d.coordinates);
+const bounds = {
+  minLng: d3.min(points, d => d[0]),
+  maxLng: d3.max(points, d => d[0]),
+  minLat: d3.min(points, d => d[1]),
+  maxLat: d3.max(points, d => d[1])
+};
+
+// Add padding to the bounds
+const padding = 1; // degrees
+bounds.minLng -= padding;
+bounds.maxLng += padding;
+bounds.minLat -= padding/2;
+bounds.maxLat += padding/2;
+
+const projection = d3.geoMercator()
+  .center([(bounds.minLng + bounds.maxLng) / 2, (bounds.minLat + bounds.maxLat) / 2])
+  .scale(width / (2 * Math.PI) * (bounds.maxLng - bounds.minLng > 180 ? 
+    360 / (bounds.maxLng - bounds.minLng) : 
+    180 / Math.max(bounds.maxLng - bounds.minLng, (bounds.maxLat - bounds.minLat) * 2)))
+  .translate([width / 2, height / 2]);
 
 const path = d3.geoPath().projection(projection);
 
