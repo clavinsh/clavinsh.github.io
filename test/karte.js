@@ -1,13 +1,13 @@
 const locations = [
   {
-    name: "Golfiņš Minigofs",
+    name: "Golfiņš Minigolfs",
     coordinates: [56.9604584, 24.1393957],
-    description: "12:00 - 13:00"
+    description: "22. marts, 12:00 - 13:00"
   },
   {
     name: "Ķemeri",
     coordinates: [56.9427495, 23.48536],
-    description: "līdz rītam maybe"
+    description: "22. marts, 13:00 - 23. marts, xx:xx"
   }
 ];
 
