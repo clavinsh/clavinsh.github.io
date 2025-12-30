@@ -1,5 +1,67 @@
 "use strict";
 
+// Mobile scroll speed limiter (iOS & Android)
+(function () {
+    const SPEED_MULTIPLIER = 0.4; // Lower = slower scrolling (0.1 to 1.0)
+    const MOMENTUM_DECAY = 0.92; // Lower = momentum dies faster
+    const MIN_VELOCITY = 0.5;
+
+    let lastTouchY = 0;
+    let velocity = 0;
+    let isTouching = false;
+    let momentumId = null;
+
+    // Only apply on touch devices
+    if (!('ontouchstart' in window)) return;
+
+    document.body.style.touchAction = 'none';
+    document.body.style.overscrollBehavior = 'none';
+
+    window.addEventListener('touchstart', function (e) {
+        isTouching = true;
+        lastTouchY = e.touches[0].clientY;
+        velocity = 0;
+
+        if (momentumId) {
+            cancelAnimationFrame(momentumId);
+            momentumId = null;
+        }
+    }, { passive: true });
+
+    window.addEventListener('touchmove', function (e) {
+        if (!isTouching) return;
+        e.preventDefault();
+
+        const touchY = e.touches[0].clientY;
+        const delta = (lastTouchY - touchY) * SPEED_MULTIPLIER;
+        velocity = delta;
+        lastTouchY = touchY;
+
+        const maxScroll = document.body.scrollHeight - window.innerHeight;
+        const newScroll = Math.max(0, Math.min(maxScroll, window.scrollY + delta));
+        window.scrollTo(0, newScroll);
+    }, { passive: false });
+
+    window.addEventListener('touchend', function () {
+        isTouching = false;
+        applyMomentum();
+    }, { passive: true });
+
+    function applyMomentum() {
+        if (Math.abs(velocity) < MIN_VELOCITY) {
+            momentumId = null;
+            return;
+        }
+
+        const maxScroll = document.body.scrollHeight - window.innerHeight;
+        const newScroll = Math.max(0, Math.min(maxScroll, window.scrollY + velocity));
+        window.scrollTo(0, newScroll);
+
+        velocity *= MOMENTUM_DECAY;
+        momentumId = requestAnimationFrame(applyMomentum);
+    }
+})();
+
 // Hide progress hint when near bottom
 window.addEventListener('scroll', function () {
     const hint = document.querySelector('.progress-hint');
@@ -320,8 +382,9 @@ window.addEventListener('scroll', function () {
 
     // Check if at bottom
     function checkScroll() {
-        const scrollPercent = (window.scrollY + window.innerHeight) / document.body.scrollHeight;
-        if (scrollPercent > 0.95) {
+        // Check if user is at the very bottom (within 50px)
+        const distanceFromBottom = document.body.scrollHeight - window.scrollY - window.innerHeight;
+        if (distanceFromBottom < 50) {
             startFireworks();
         } else {
             stopFireworks();
