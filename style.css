@@ -1,0 +1,159 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    background-attachment: fixed;
+    color: #fff;
+    min-height: 100%;
+    overflow-x: hidden;
+}
+
+.scroll-track {
+    position: fixed;
+    top: 0;
+    width: 30px;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.scroll-track.left {
+    left: 0;
+}
+
+.scroll-track.right {
+    right: 0;
+}
+
+.scroll-track-inner {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    will-change: transform;
+}
+
+.tick {
+    width: 2px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 1px;
+    flex-shrink: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.message {
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    padding: 50vh 20px;
+    opacity: 0.9;
+    max-width: 90%;
+}
+
+.message:first-child {
+    padding-top: 30vh;
+}
+
+.emphasis {
+    color: #EA3323;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+
+.arrow {
+    font-size: 3rem;
+    animation: bounce 1.5s infinite;
+    padding: 20px;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(15px);
+    }
+}
+
+.small-text {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    opacity: 0.6;
+    padding: 30vh 20px;
+}
+
+.filler {
+    height: 100vh;
+}
+
+.result-container {
+    padding: 20vh 20px 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.result-text {
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: bold;
+    background: linear-gradient(90deg, #e94560, #ff6b6b, #feca57);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.result-image {
+    max-width: 90%;
+    max-height: 80vh;
+    border-radius: 15px;
+    box-shadow: 0 20px 60px rgba(233, 69, 96, 0.4);
+}
+
+.progress-hint {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 0.9rem;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+#fireworks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+}
+
+@media (max-width: 600px) {
+    .message {
+        padding: 40vh 15px;
+    }
+
+    .small-text {
+        padding: 25vh 15px;
+    }
+}
